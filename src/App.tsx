@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import {
+  PodcastDetailsComponent,
+  PodcastEpisodeComponent,
+} from "./features/podcast";
+import { HomePage, PodcastPage, LayoutPage, UnknownPage } from "./pages";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<LayoutPage />}>
+          <Route index element={<HomePage />} />
+          <Route path="podcast/:podcastId" element={<PodcastPage />}>
+            <Route index element={<PodcastDetailsComponent />} />
+            <Route
+              path="episode/:episodeId"
+              element={<PodcastEpisodeComponent />}
+            />
+          </Route>
+          <Route path="*" element={<UnknownPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
+/**
+ *      <Route index element={<HomePage />}>
+          <Route path="/podcast/:podcastId" element={<PodcastDetailsComponent />}
+        </Route>
+ */

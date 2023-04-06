@@ -54,6 +54,8 @@
         ],
         "react-hooks/exhaustive-deps": "off",
         "object-shorthand": "error",
-        "no-console": "warn"
+        "no-console": "warn",
+        "no-shadow": "off",
+        "no-undef": "off"
     }
 }
