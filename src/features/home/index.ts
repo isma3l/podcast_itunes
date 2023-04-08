@@ -1,1 +1,5 @@
-export { FilterComponent } from "./components";
+export {
+  FilterComponent,
+  PodcastItemComponent,
+  PodcastListComponent,
+} from "./components";
