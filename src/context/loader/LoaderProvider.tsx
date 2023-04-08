@@ -6,22 +6,25 @@ type State = {
 
 type Context = {
   state: State;
-  onLoadingChange: () => void;
+  hideLoading: () => void;
+  showLoading: () => void;
 };
 
+// TODO: could be improved by using useReducer and separating action from state
 export const LoaderContext = createContext<Context>({} as Context);
 
 const LoaderDataProvider = ({ children }: { children: ReactNode }) => {
   const [state, setState] = useState<State>({} as State);
 
   const value = useMemo(() => {
-    const onLoadingChange = () => {
-      setState((prev) => ({ loading: !prev.loading }));
-    };
+    const hideLoading = () => setState({ loading: false });
+
+    const showLoading = () => setState({ loading: true });
 
     return {
       state,
-      onLoadingChange,
+      showLoading,
+      hideLoading,
     };
   }, [state]);
 
