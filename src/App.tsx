@@ -27,9 +27,3 @@ function App() {
 }
 
 export default App;
-
-/**
- *      <Route index element={<HomePage />}>
-          <Route path="/podcast/:podcastId" element={<PodcastDetailsComponent />}
-        </Route>
- */
