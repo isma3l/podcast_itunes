@@ -4,10 +4,11 @@ import {
   PodcastEpisodeComponent,
 } from "./features/podcast";
 import { HomePage, PodcastPage, LayoutPage, UnknownPage } from "./pages";
+import { LoaderDataProvider } from "./context";
 
 function App() {
   return (
-    <div>
+    <LoaderDataProvider>
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<HomePage />} />
@@ -21,7 +22,7 @@ function App() {
           <Route path="*" element={<UnknownPage />} />
         </Route>
       </Routes>
-    </div>
+    </LoaderDataProvider>
   );
 }
 
