@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { PodcastItemInterface } from "@/models";
+import { PodcastInterface } from "@/models";
 
 type PodcastItemComponentProps = {
-  podcast: PodcastItemInterface;
+  podcast: PodcastInterface;
 };
 
 const PodcastItemComponent = ({ podcast }: PodcastItemComponentProps) => {

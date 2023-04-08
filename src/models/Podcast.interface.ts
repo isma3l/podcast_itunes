@@ -1,4 +1,4 @@
-export interface PodcastItemInterface {
+export interface PodcastInterface {
   id: string;
   title: string;
   author: string;

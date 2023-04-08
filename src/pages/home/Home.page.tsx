@@ -1,5 +1,5 @@
 import { FilterComponent, PodcastListComponent } from "@/features/home";
-import { PodcastItemInterface } from "@/models";
+import { PodcastInterface } from "@/models";
 import { useEffect, useState } from "react";
 import { fetchPodcasts } from "@/services";
 import { useLoaderContext } from "@/hooks";
@@ -8,10 +8,10 @@ const HomePage = () => {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState<string>("");
   const { state, showLoading, hideLoading } = useLoaderContext();
-  const [podcasts, setPodcasts] = useState<PodcastItemInterface[]>([]);
-  const [filteredPodcasts, setFilteredPodcasts] = useState<
-    PodcastItemInterface[]
-  >([]);
+  const [podcasts, setPodcasts] = useState<PodcastInterface[]>([]);
+  const [filteredPodcasts, setFilteredPodcasts] = useState<PodcastInterface[]>(
+    []
+  );
 
   useEffect(() => {
     const getPodcasts = async () => {
@@ -31,8 +31,8 @@ const HomePage = () => {
   }, []);
 
   const handleChange = (value: string) => {
-    const filteredList: PodcastItemInterface[] = podcasts?.filter(
-      (podcast: PodcastItemInterface) => {
+    const filteredList: PodcastInterface[] = podcasts?.filter(
+      (podcast: PodcastInterface) => {
         return (
           podcast.title.toLowerCase().search(value.toLowerCase()) !== -1 ||
           podcast.author.toLowerCase().search(value.toLowerCase()) !== -1

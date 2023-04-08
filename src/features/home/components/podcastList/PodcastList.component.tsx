@@ -1,8 +1,8 @@
-import { PodcastItemInterface } from "@/models";
+import { PodcastInterface } from "@/models";
 import ItemListComponent from "../item/PodcastItem.component";
 
 type PodcastListComponentProps = {
-  podcasts: PodcastItemInterface[];
+  podcasts: PodcastInterface[];
 };
 
 const PodcastListComponent = ({ podcasts }: PodcastListComponentProps) => {

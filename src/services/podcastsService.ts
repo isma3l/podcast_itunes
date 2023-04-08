@@ -1,5 +1,5 @@
 import { get } from "@/lib/api";
-import { PodcastItemInterface } from "@/models";
+import { PodcastInterface } from "@/models";
 import {
   getLocalDataWithTimeStamp,
   storageDataWithTimeStamp,
@@ -17,14 +17,14 @@ const PODCASTS_URL = "/us/rss/toppodcasts/limit=100/genre=1310/json";
 const LOCAL_KEY_PODCASTS = "podcasts_local";
 
 const fetchPodCastFromApi = async (): Promise<
-  PodcastItemInterface[] | undefined
+  PodcastInterface[] | undefined
 > => {
   try {
     const data = await get<{ feed: { entry: PostcastsResponse[] } }>(
       PODCASTS_URL
     );
 
-    const podcasts: PodcastItemInterface[] = data.feed.entry.map((podcast) => ({
+    const podcasts: PodcastInterface[] = data.feed.entry.map((podcast) => ({
       id: podcast.id.attributes["im:id"],
       title: podcast["im:name"].label,
       author: podcast["im:artist"].label,
@@ -45,10 +45,10 @@ const fetchPodCastFromApi = async (): Promise<
  * otherwise it is returned undefined
  */
 const fetchValidPodCastFromLocalStorage = ():
-  | PodcastItemInterface[]
+  | PodcastInterface[]
   | undefined => {
   const podcastsData =
-    getLocalDataWithTimeStamp<PodcastItemInterface[]>(LOCAL_KEY_PODCASTS);
+    getLocalDataWithTimeStamp<PodcastInterface[]>(LOCAL_KEY_PODCASTS);
   const dataValid =
     podcastsData !== undefined && isLocalDataValid(podcastsData);
 
@@ -56,7 +56,7 @@ const fetchValidPodCastFromLocalStorage = ():
 };
 
 export const fetchPodcasts = async (): Promise<
-  PodcastItemInterface[] | undefined
+  PodcastInterface[] | undefined
 > => {
   const podcastsData = fetchValidPodCastFromLocalStorage();
   if (podcastsData) return podcastsData;
