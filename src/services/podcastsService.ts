@@ -35,6 +35,7 @@ const fetchPodCastFromApi = async (): Promise<
 
     return podcasts;
   } catch (error: unknown) {
+    console.log(error);
     throw Error("Error");
   }
 };

@@ -7,7 +7,7 @@ type PodcastItemComponentProps = {
 
 const PodcastItemComponent = ({ podcast }: PodcastItemComponentProps) => {
   return (
-    <Link to={`/podcasts/${podcast.id}`}>
+    <Link to={`/podcast/${podcast.id}`}>
       <div className="relative w-64 h-44 border border-gray-100 rounded-xl shadow-lg">
         <div className="absolute bottom-[92px] left-14">
           <img

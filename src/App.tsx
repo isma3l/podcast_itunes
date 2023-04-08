@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import {
   PodcastDetailsComponent,
   PodcastEpisodeComponent,
-} from "./features/podcast";
-import { HomePage, PodcastPage, LayoutPage, UnknownPage } from "./pages";
+} from "./features/detailPodcast";
+import { HomePage, LayoutPage, PodcastDetailsPage, UnknownPage } from "./pages";
 import { LoaderDataProvider } from "./context";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<HomePage />} />
-          <Route path="podcast/:podcastId" element={<PodcastPage />}>
+          <Route path="podcast/:podcastId" element={<PodcastDetailsPage />}>
             <Route index element={<PodcastDetailsComponent />} />
             <Route
               path="episode/:episodeId"
