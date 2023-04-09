@@ -18,7 +18,7 @@ const PodcastCardComponent = ({
       <Card>
         <div className="border-b-2 border-gray-200 pb-6 px-6">
           <img
-            className="block mx-auto sm:mx-0 sm:shrink-0 rounded"
+            className="block mx-auto sm:mx-0 sm:shrink-0 rounded h-56 w-56"
             src={urlImage}
           />
         </div>

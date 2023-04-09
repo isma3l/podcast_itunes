@@ -1,3 +1,4 @@
+import { urlKeys } from "@/constants";
 import { get } from "@/lib/api";
 import { PodcastInterface } from "@/models";
 import {
@@ -17,14 +18,13 @@ type PodcastDataResponse = {
   feed: { entry: PodcastsResponse[] };
 };
 
-const PODCASTS_URL = "/us/rss/toppodcasts/limit=100/genre=1310/json";
 const LOCAL_KEY_PODCASTS = "podcasts_local";
 
 const fetchPodCastFromApi = async (): Promise<
   PodcastInterface[] | undefined
 > => {
   try {
-    const data = await get<PodcastDataResponse>(PODCASTS_URL);
+    const data = await get<PodcastDataResponse>(urlKeys.podcastsUrl);
 
     const podcasts: PodcastInterface[] = data.feed.entry.map((podcast) => ({
       id: podcast.id.attributes["im:id"],

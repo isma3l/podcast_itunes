@@ -1,6 +1,11 @@
+import Parser from "rss-parser";
+import { urlKeys } from "@/constants";
 import { get } from "@/lib/api";
-import { PodcastInterface, PodcastDetailsInterface } from "@/models";
-import { fetchEpisodesFromApi } from "./episodesService";
+import {
+  PodcastInterface,
+  PodcastDetailsInterface,
+  EpisodeInterface,
+} from "@/models";
 
 type PodcastDetailsResponse = {
   artistId: string;
@@ -14,29 +19,41 @@ type PodcastDetailDataResponse = {
   results: PodcastDetailsResponse[];
 };
 
-const PODCAST_DETAIL_URL = "https://itunes.apple.com/lookup?id=";
+const parser = new Parser();
 
 const fetchPodcastDetailsFromApi = async (
   podcastId: string
 ): Promise<PodcastDetailsInterface | undefined> => {
   try {
     const data = await get<PodcastDetailDataResponse>(
-      `${PODCAST_DETAIL_URL}${podcastId}`
+      urlKeys.podcastDetailsUrl(podcastId)
     );
 
     const podcastDetailsResponse = data.results[0];
+    const feedUrlWithCors = urlKeys.podcastEpisodesUrl(
+      podcastDetailsResponse.feedUrl
+    );
+    const dataRSS = await parser.parseURL(feedUrlWithCors);
+
     const podcast: PodcastInterface = {
       id: podcastDetailsResponse.artistId,
       title: podcastDetailsResponse.trackName,
       author: podcastDetailsResponse.artistName,
       urlImage: podcastDetailsResponse.artworkUrl600,
+      description: dataRSS.description,
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const rss = await fetchEpisodesFromApi(podcastDetailsResponse.feedUrl);
-    console.log("RSS: ", rss);
+    const episodes: EpisodeInterface[] = dataRSS.items.map((item) => ({
+      id: item.guid ?? "",
+      title: item.title ?? "",
+      date: item.pubDate ?? "",
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      duration: item.itunes.duration as string,
+      description: item.content ?? "",
+      audioUrl: item.enclosure?.url ?? "",
+    }));
 
-    return { podcast, episodes: [] };
+    return { podcast, episodes };
   } catch (error: unknown) {
     console.log(error);
     throw Error("Error");

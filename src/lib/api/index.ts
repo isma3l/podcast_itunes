@@ -1,14 +1,12 @@
 import axios from "axios";
-
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-const BASE_URL = "https://itunes.apple.com";
+import { urlKeys } from "@/constants";
 
 const axiosConfig = {
-  baseURL: `${CORS_PROXY}${BASE_URL}`,
+  baseURL: urlKeys.baseUrlWithCors,
   headers: {
     "Content-type": "application/json",
   },
-  timeout: 5000,
+  timeout: 8000,
 };
 
 const apiClient = axios.create(axiosConfig);

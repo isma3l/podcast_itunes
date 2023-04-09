@@ -30,7 +30,6 @@ const PodcastDetailsPage = () => {
         showLoading();
         const data = await fetchPodcastDetails(urlParams.podcastId ?? "");
         if (data) setPodcastDetails(data);
-        console.log("dataaa: ", data);
       } catch (err: unknown) {
         setError(true);
       } finally {
