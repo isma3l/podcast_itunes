@@ -3,4 +3,5 @@ export interface PodcastInterface {
   title: string;
   author: string;
   urlImage: string;
+  description?: string;
 }

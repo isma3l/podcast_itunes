@@ -6,11 +6,15 @@ import {
   isLocalDataValid,
 } from "@/utils";
 
-type PostcastsResponse = {
+type PodcastsResponse = {
   id: { attributes: { "im:id": string } };
   "im:artist": { label: string };
   "im:name": { label: string };
   "im:image": { label: string }[];
+};
+
+type PodcastDataResponse = {
+  feed: { entry: PodcastsResponse[] };
 };
 
 const PODCASTS_URL = "/us/rss/toppodcasts/limit=100/genre=1310/json";
@@ -20,9 +24,7 @@ const fetchPodCastFromApi = async (): Promise<
   PodcastInterface[] | undefined
 > => {
   try {
-    const data = await get<{ feed: { entry: PostcastsResponse[] } }>(
-      PODCASTS_URL
-    );
+    const data = await get<PodcastDataResponse>(PODCASTS_URL);
 
     const podcasts: PodcastInterface[] = data.feed.entry.map((podcast) => ({
       id: podcast.id.attributes["im:id"],
