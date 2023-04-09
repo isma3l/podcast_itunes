@@ -1,9 +1,17 @@
 import { Outlet } from "react-router-dom";
 import { PodcastCardComponent } from "@/features/detailPodcast/components";
+import { useLoaderContext } from "@/hooks";
+import { useState } from "react";
+import { PodcastDetailsInterface } from "@/models";
 
 const PodcastDetailsPage = () => {
+  const { state, showLoading, hideLoading } = useLoaderContext();
+  const [error, setError] = useState(false);
+  const [podcastDetails, setpodcastDetails] =
+    useState<PodcastDetailsInterface | null>();
+
   return (
-    <div className="flex flex-col py-6">
+    <div className="flex py-6 justify-between">
       <PodcastCardComponent
         title={""}
         author={""}
@@ -12,6 +20,7 @@ const PodcastDetailsPage = () => {
         }
         description={""}
       />
+      <Outlet context={{ podcastDetails }} />
     </div>
   );
 };
