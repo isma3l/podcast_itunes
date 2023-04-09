@@ -1,5 +1,6 @@
 import { get } from "@/lib/api";
 import { PodcastInterface, PodcastDetailsInterface } from "@/models";
+import { fetchEpisodesFromApi } from "./episodesService";
 
 type PodcastDetailsResponse = {
   artistId: string;
@@ -30,6 +31,10 @@ const fetchPodcastDetailsFromApi = async (
       author: podcastDetailsResponse.artistName,
       urlImage: podcastDetailsResponse.artworkUrl600,
     };
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const rss = await fetchEpisodesFromApi(podcastDetailsResponse.feedUrl);
+    console.log("RSS: ", rss);
 
     return { podcast, episodes: [] };
   } catch (error: unknown) {

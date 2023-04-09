@@ -4,7 +4,6 @@ import { ContextPodcastDetails } from "../../types/contextPodcastDetails";
 
 const PodcastDetailsComponent = () => {
   const { podcastDetails } = useCustomOutletContext<ContextPodcastDetails>();
-  console.log("podcastDetails: ", podcastDetails);
   return (
     <div className="w-8/12 justify-end">
       <EpisodeTableComponent episodes={[]} />
