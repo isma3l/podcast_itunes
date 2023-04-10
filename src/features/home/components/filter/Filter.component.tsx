@@ -8,7 +8,7 @@ type FilterComponentProps = {
 
 const FilterComponent = ({ label, value, onChange }: FilterComponentProps) => {
   return (
-    <div className="flex items-center w-80 justify-between">
+    <div className="flex items-center w-full self-end pr-6 justify-end">
       <div className="bg-sky-600 text-white rounded-lg p-1.5 min-w-[40px] font-bold text-lg h-7 flex items-center justify-center">
         {label}
       </div>
@@ -17,7 +17,7 @@ const FilterComponent = ({ label, value, onChange }: FilterComponentProps) => {
         onChange={(event) => onChange(event.target.value)}
         type="text"
         placeholder="Filter podcasts..."
-        className="w-64 border-red-800"
+        className="w-80 ml-6"
       />
     </div>
   );

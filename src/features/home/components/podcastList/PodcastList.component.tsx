@@ -7,7 +7,7 @@ type PodcastListComponentProps = {
 
 const PodcastListComponent = ({ podcasts }: PodcastListComponentProps) => {
   return (
-    <div className="mt-24 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-40 justify-items-center">
+    <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-32 justify-items-center">
       {podcasts.map((podcast) => (
         <ItemListComponent key={podcast.id} podcast={podcast} />
       ))}

@@ -54,13 +54,11 @@ const HomePage = () => {
         "Cargando..."
       ) : (
         <>
-          <div className="self-end pe-6">
-            <FilterComponent
-              label={filteredPodcasts.length}
-              value={query}
-              onChange={handleChange}
-            />
-          </div>
+          <FilterComponent
+            label={filteredPodcasts.length}
+            value={query}
+            onChange={handleChange}
+          />
           <PodcastListComponent podcasts={filteredPodcasts} />
         </>
       )}
