@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+### Aplicación web para la reproducción de podcasts de itunes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta prueba consiste en la creación de una mini-aplicación para escuchar podcasts musicales.
 
-## Available Scripts
+La aplicación tendrá únicamente tres vistas:
 
-In the project directory, you can run:
+- Vista principal
+- Detalles de un podcast
+- Detalles de un capítulo de un podcast
 
-### `npm start`
+##Pasos iniciales
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Para probar la aplicación primero hay que clonar el repositorio del proyecto e instalar las dependencias.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+###Clonar el repositorio
+Ejecutar el siguiente comando:
 
-### `npm test`
+`git clone `
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+###Instalar las dependencias
+En la raíz del proyecto clonado ejecutar el siguiente comando:
 
-### `npm run build`
+`yarn install`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+###Prueba de la aplicación
+Para ejecutar la aplicación usaremos CORS Anywhere para acceder a los podcasts.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Como paso previo a la ejecución de la aplicación, hay que solicitar un acceso temporal en este link:
+https://cors-anywhere.herokuapp.com/corsdemo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Prueba en modo development
 
-### `npm run eject`
+En la raíz del proyecto ejecutar:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`yarn start`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Después de ejecutar el comando se ejecutará un servidor local en http://localhost:3000 y se abrirá el navegador con la aplicacion web.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Prueba en modo production
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Para esta prueba se requiere empaquetar la aplicación y levantarla mediante un servidor local.
 
-## Learn More
+##### Empaquetar la aplicación
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Ejecutar el siguiente comando:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`yarn build`
+
+Una vez finalizada la compilación se creará una carpeta llamada build
+Esta carpeta es la que se debe usar para realizar las pruebas.
+
+####Sugerencia
+Puedes usar el servidor [serve](https://www.npmjs.com/package/serve "serve")
+Es sencillo de usar, sólo se debes instalarlo globalmente y pasarle la ruta de la carpeta build.
+
+` yarn global add serve``
+ `serve -s build`
+
+Posteriormente para probara la aplicación hay que ingresar en http://localhost:3000/.
