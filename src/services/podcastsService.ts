@@ -42,8 +42,8 @@ const fetchPodCastFromApi = async (): Promise<
 
     return podcasts;
   } catch (error: unknown) {
-    console.log(error);
-    throw Error("Error");
+    console.error("Error getting the list of podcasts.", error);
+    throw error;
   }
 };
 

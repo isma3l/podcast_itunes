@@ -14,7 +14,7 @@ import {
 } from "@/models";
 
 type PodcastDetailsResponse = {
-  artistId: string;
+  trackId: string;
   trackName: string;
   artistName: string;
   artworkUrl600: string;
@@ -56,16 +56,15 @@ const fetchPodcastDetailsFromApi = async (
       podcastDetailsResponse.feedUrl
     );
     const dataRSS = await parser.parseURL(feedUrlWithCors);
+    const episodes: EpisodeInterface[] = dataRSS.items.map(mapperRssToEpisode);
 
     const podcast: PodcastInterface = {
-      id: podcastDetailsResponse.artistId,
+      id: podcastDetailsResponse.trackId,
       title: podcastDetailsResponse.trackName,
       author: podcastDetailsResponse.artistName,
       urlImage: podcastDetailsResponse.artworkUrl600,
       description: dataRSS.description,
     };
-
-    const episodes: EpisodeInterface[] = dataRSS.items.map(mapperRssToEpisode);
 
     const podcastDetails: PodcastDetailsInterface = { podcast, episodes };
     storageDataWithTimeStamp(
@@ -75,8 +74,8 @@ const fetchPodcastDetailsFromApi = async (
 
     return podcastDetails;
   } catch (error: unknown) {
-    console.log(error);
-    throw Error("Error");
+    console.error("Error getting the details of podcasts.", error);
+    throw error;
   }
 };
 
@@ -86,10 +85,10 @@ const fetchValidPodCastDetailsFromLocalStorage = (
   const podcastDetailsData = getLocalDataWithTimeStamp<PodcastDetailsInterface>(
     StorageKeys.podcastDetailKey(podcastId)
   );
-  const dataValid =
+  const validStoredData =
     podcastDetailsData !== undefined && isLocalDataValid(podcastDetailsData);
 
-  return dataValid ? podcastDetailsData.data : undefined;
+  return validStoredData ? podcastDetailsData.data : undefined;
 };
 
 export const fetchPodcastDetails = async (
