@@ -1,5 +1,8 @@
 import { Outlet, useParams } from "react-router-dom";
-import { PodcastCardComponent } from "@/features/detailPodcast/components";
+import {
+  PodcastCardComponent,
+  DetailsSqueletonComponent,
+} from "@/features/detailPodcast/components";
 import { useLoaderContext } from "@/hooks";
 import { useEffect, useState } from "react";
 import { PodcastDetailsInterface } from "@/models";
@@ -48,7 +51,7 @@ const PodcastDetailsPage = () => {
           message={"There was an error getting the detail of a podcast"}
         />
       ) : state.loading ? (
-        "Cargando..."
+        <DetailsSqueletonComponent />
       ) : (
         <>
           <PodcastCardComponent
