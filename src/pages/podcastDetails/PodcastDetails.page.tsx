@@ -22,7 +22,7 @@ const PodcastDetailsPage = () => {
   const [podcastDetails, setPodcastDetails] =
     useState<PodcastDetailsInterface>(podcastDetailEmpty);
 
-  const { podcast, episodes } = podcastDetails;
+  const { podcast } = podcastDetails;
 
   useEffect(() => {
     const getPodcastDetails = async () => {

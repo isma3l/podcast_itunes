@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PodcastInterface } from "@/models";
+import { RouteKeys } from "@/constants";
 
 type PodcastItemComponentProps = {
   podcast: PodcastInterface;
@@ -7,7 +8,7 @@ type PodcastItemComponentProps = {
 
 const PodcastItemComponent = ({ podcast }: PodcastItemComponentProps) => {
   return (
-    <Link to={`/podcast/${podcast.id}`}>
+    <Link to={RouteKeys.podcast(podcast.id)}>
       <div className="relative w-64 h-44 border border-gray-100 rounded-xl shadow-lg">
         <div className="absolute bottom-[92px] left-14">
           <img
@@ -20,7 +21,7 @@ const PodcastItemComponent = ({ podcast }: PodcastItemComponentProps) => {
             {podcast.title}
           </div>
           <p className="text-slate-500 text-center text-sm px-3">
-            {podcast.author}
+            Author: {podcast.author}
           </p>
         </div>
       </div>

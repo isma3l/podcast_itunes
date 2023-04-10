@@ -12,6 +12,7 @@ module.exports = {
           process: require.resolve("process/browser"),
           http: require.resolve("stream-http"),
           https: require.resolve("https-browserify"),
+          stream: require.resolve("stream-browserify"),
           url: require.resolve("url"),
           timers: require.resolve("timers-browserify"),
           buffer: require.resolve("buffer"),

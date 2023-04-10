@@ -1,4 +1,4 @@
-import { urlKeys } from "@/constants";
+import { StorageKeys, urlKeys } from "@/constants";
 import { get } from "@/lib/api";
 import { PodcastInterface } from "@/models";
 import {
@@ -7,18 +7,23 @@ import {
   isLocalDataValid,
 } from "@/utils";
 
+enum PodcastKeys {
+  id = "im:id",
+  author = "im:artist",
+  title = "im:name",
+  urlImage = "im:image",
+}
+
 type PodcastsResponse = {
-  id: { attributes: { "im:id": string } };
-  "im:artist": { label: string };
-  "im:name": { label: string };
-  "im:image": { label: string }[];
+  id: { attributes: { [PodcastKeys.id]: string } };
+  [PodcastKeys.author]: { label: string };
+  [PodcastKeys.title]: { label: string };
+  [PodcastKeys.urlImage]: { label: string }[];
 };
 
 type PodcastDataResponse = {
   feed: { entry: PodcastsResponse[] };
 };
-
-const LOCAL_KEY_PODCASTS = "podcasts_local";
 
 const fetchPodCastFromApi = async (): Promise<
   PodcastInterface[] | undefined
@@ -27,13 +32,13 @@ const fetchPodCastFromApi = async (): Promise<
     const data = await get<PodcastDataResponse>(urlKeys.podcastsUrl);
 
     const podcasts: PodcastInterface[] = data.feed.entry.map((podcast) => ({
-      id: podcast.id.attributes["im:id"],
-      title: podcast["im:name"].label,
-      author: podcast["im:artist"].label,
-      urlImage: podcast["im:image"][2].label,
+      id: podcast.id.attributes[PodcastKeys.id],
+      title: podcast[PodcastKeys.title].label,
+      author: podcast[PodcastKeys.author].label,
+      urlImage: podcast[PodcastKeys.urlImage][2].label,
     }));
 
-    storageDataWithTimeStamp(podcasts, LOCAL_KEY_PODCASTS);
+    storageDataWithTimeStamp(podcasts, StorageKeys.podcastsKey);
 
     return podcasts;
   } catch (error: unknown) {
@@ -49,8 +54,9 @@ const fetchPodCastFromApi = async (): Promise<
 const fetchValidPodCastFromLocalStorage = ():
   | PodcastInterface[]
   | undefined => {
-  const podcastsData =
-    getLocalDataWithTimeStamp<PodcastInterface[]>(LOCAL_KEY_PODCASTS);
+  const podcastsData = getLocalDataWithTimeStamp<PodcastInterface[]>(
+    StorageKeys.podcastsKey
+  );
   const dataValid =
     podcastsData !== undefined && isLocalDataValid(podcastsData);
 

@@ -24,13 +24,14 @@ const PodcastCardComponent = ({
         </div>
         <div className="border-b-2 border-gray-200 pb-5">
           <p className="text-lg font-bold text-gray-900 leading-6">{title}</p>
-          <p className="font-medium italic text-base text-gray-700">{author}</p>
+          <p className="font-normal italic text-base text-gray-600">{author}</p>
         </div>
         <div>
-          <p className="text-base font-bold text-gray-900">Description:</p>
-          <span className="font-medium italic text-base text-gray-700">
-            {description}
-          </span>
+          <p className="text-base text-gray-900 font-bold">Description:</p>
+          <div
+            className="font-normal italic text-base text-gray-600"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
       </Card>
     </div>
