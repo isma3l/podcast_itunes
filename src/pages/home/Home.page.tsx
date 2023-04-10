@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import { FilterComponent, PodcastListComponent } from "@/features/home";
 import { PodcastInterface } from "@/models";
-import { useEffect, useState } from "react";
 import { fetchPodcasts } from "@/services";
 import { useLoaderContext } from "@/hooks";
+import { MessageComponent } from "@/components/atoms";
 
 const HomePage = () => {
   const [error, setError] = useState(false);
@@ -46,7 +47,9 @@ const HomePage = () => {
   return (
     <div className="flex flex-col py-6">
       {error ? (
-        "Error"
+        <MessageComponent
+          message={"There was an error in obtaining the podcast listing."}
+        />
       ) : state.loading ? (
         "Cargando..."
       ) : (

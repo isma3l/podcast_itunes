@@ -1,4 +1,4 @@
-const Loader = () => {
+const LoaderComponent = () => {
   return (
     <div role="status" className="self-center">
       <svg
@@ -22,4 +22,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default LoaderComponent;

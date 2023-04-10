@@ -4,6 +4,7 @@ import { useLoaderContext } from "@/hooks";
 import { useEffect, useState } from "react";
 import { PodcastDetailsInterface } from "@/models";
 import { fetchPodcastDetails } from "@/services/podcastDetailsService";
+import { MessageComponent } from "@/components/atoms";
 
 const podcastDetailEmpty: PodcastDetailsInterface = {
   episodes: [],
@@ -43,7 +44,9 @@ const PodcastDetailsPage = () => {
   return (
     <div className="flex py-6 justify-between">
       {error ? (
-        "Error"
+        <MessageComponent
+          message={"There was an error getting the detail of a podcast"}
+        />
       ) : state.loading ? (
         "Cargando..."
       ) : (

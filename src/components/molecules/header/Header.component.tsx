@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Loader } from "../../atoms";
 import { useLoaderContext } from "@/hooks";
+import { LoaderComponent } from "@/components/atoms";
 
 const HeaderComponent = () => {
   const { state } = useLoaderContext();
@@ -10,7 +10,7 @@ const HeaderComponent = () => {
       <Link className="text-3xl font-semibold text-sky-600" to="/">
         Podcaster
       </Link>
-      {state.loading && <Loader />}
+      {state.loading && <LoaderComponent />}
     </div>
   );
 };

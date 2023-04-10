@@ -15,8 +15,8 @@ import {
 
 type PodcastDetailsResponse = {
   artistId: string;
-  trackName: string; // title
-  artistName: string; // author
+  trackName: string;
+  artistName: string;
   artworkUrl600: string;
   feedUrl: string;
 };

@@ -1,5 +1,9 @@
+import { MessageComponent } from "@/components/atoms";
+
 const UnknownPage = () => {
-  return <h1 style={{ backgroundColor: "pink" }}>UnknownPage</h1>;
+  return (
+    <MessageComponent message="Error: The page you are looking for was not found." />
+  );
 };
 
 export default UnknownPage;
