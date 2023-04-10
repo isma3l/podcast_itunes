@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { FilterComponent, PodcastListComponent } from "@/features/home";
+import {
+  FilterComponent,
+  HomeSqueletonComponent,
+  PodcastListComponent,
+} from "@/features/home";
 import { PodcastInterface } from "@/models";
 import { fetchPodcasts } from "@/services";
 import { useLoaderContext } from "@/hooks";
@@ -51,7 +55,7 @@ const HomePage = () => {
           message={"There was an error in obtaining the podcast listing."}
         />
       ) : state.loading ? (
-        "Cargando..."
+        <HomeSqueletonComponent />
       ) : (
         <>
           <FilterComponent
