@@ -29,6 +29,7 @@ const parser = new Parser();
 
 const mapperRssToEpisode = (
   item: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   } & Parser.Item
 ): EpisodeInterface => {
