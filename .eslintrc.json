@@ -52,10 +52,17 @@
                 }
             }
         ],
+        "@typescript-eslint/quotes": [
+            "error",
+            "double",
+            {
+              "allowTemplateLiterals": true
+            }
+          ],
         "react-hooks/exhaustive-deps": "off",
         "object-shorthand": "error",
         "no-console": "warn",
         "no-shadow": "off",
-        "no-undef": "off"
+        "no-undef": "off"        
     }
 }
