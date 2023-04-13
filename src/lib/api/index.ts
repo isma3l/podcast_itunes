@@ -2,7 +2,7 @@ import axios from "axios";
 import { urlKeys } from "@/constants";
 
 const axiosConfig = {
-  baseURL: urlKeys.baseUrlWithCors,
+  baseURL: urlKeys.baseUrl,
   headers: {
     "Content-type": "application/json",
   },

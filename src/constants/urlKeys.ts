@@ -1,10 +1,9 @@
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-const BASE_URL = "https://itunes.apple.com";
+const BASE_URL = "https://server-proxy-podcasts.vercel.app";
 
 export const urlKeys = {
-  baseUrlWithCors: `${CORS_PROXY}${BASE_URL}`,
-  proxyUrl: CORS_PROXY,
-  podcastsUrl: "/us/rss/toppodcasts/limit=100/genre=1310/json",
-  podcastDetailsUrl: (podcastId: string) => `/lookup?id=${podcastId}`,
-  podcastEpisodesUrl: (feedUrl: string) => `${CORS_PROXY}${feedUrl}`,
+  baseUrl: BASE_URL,
+  podcastsUrl: "/api/podcasts",
+  podcastDetailsUrl: (podcastId: string) => `/api/podcasts/${podcastId}`,
+  podcastEpisodesUrl: (feedUrl: string) =>
+    `${BASE_URL}/api/episodes?feedurl=${feedUrl}`,
 };

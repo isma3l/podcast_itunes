@@ -53,10 +53,8 @@ const fetchPodcastDetailsFromApi = async (
     );
 
     const podcastDetailsResponse = data.results[0];
-    const feedUrlWithCors = urlKeys.podcastEpisodesUrl(
-      podcastDetailsResponse.feedUrl
-    );
-    const dataRSS = await parser.parseURL(feedUrlWithCors);
+    const feedUrl = urlKeys.podcastEpisodesUrl(podcastDetailsResponse.feedUrl);
+    const dataRSS = await parser.parseURL(feedUrl);
     const episodes: EpisodeInterface[] = dataRSS.items.map(mapperRssToEpisode);
 
     const podcast: PodcastInterface = {

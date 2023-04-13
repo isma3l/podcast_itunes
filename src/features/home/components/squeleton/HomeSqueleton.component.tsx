@@ -17,8 +17,9 @@ const HomeSqueletonComponent = () => {
                 key={index}
               >
                 <div className="rounded-full flex-shrink-0  w-36 h-36 bg-gray-200"></div>
-                <div className="h-5 w-36 bg-gray-200 flex-shrink-0"></div>
-                <div className="h-4 w-36 bg-gray-200 flex-shrink-0"></div>
+                <div className="h-6 w-40 bg-gray-200 border flex-shrink-0"></div>
+                <div className="h-4 w-48 bg-gray-200 flex-shrink-0"></div>
+                <div className="h-4 w-48 bg-gray-200 flex-shrink-0"></div>
               </div>
             );
           })}
